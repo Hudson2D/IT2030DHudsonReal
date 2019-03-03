@@ -39,5 +39,10 @@ namespace EnrollmentApplication.Models
         [Range(2018, int.MaxValue, ErrorMessage = "Please Enter a year greater than 2018")]
         [Display(Name = "Enrollement Year")]
         public virtual int EnrollmentYear { get; set; }
+        
+ 
+        [InvalidChars("*", ErrorMessage = "Notes contains unacceptable characters!")]
+        public virtual string Notes { get; set; }
+
     }
 }
