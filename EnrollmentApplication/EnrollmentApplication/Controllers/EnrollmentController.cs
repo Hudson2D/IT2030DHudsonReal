@@ -14,6 +14,33 @@ namespace EnrollmentApplication.Controllers
     {
         private EnrollmentDB db = new EnrollmentDB();
 
+        public ActionResult StudentSearch(string q)
+        {
+            var students = GetStudents(q);
+            return PartialView("_StudentSearch", students);
+        }
+
+        private List<Student> GetStudents(string searchString)
+        {
+            return db.Students
+                .Where(a => a.FirstName.Contains(searchString)|| a.LastName.Contains(searchString))
+                .ToList();
+        }
+
+        public ActionResult CourseSearch(string n)
+        {
+            var courses = GetCourses(n);
+            return PartialView("_CourseSearch", courses);
+        }
+
+        private List<Course> GetCourses(string searchString2)
+        {
+            return db.Courses
+                .Where(a => a.Description.Contains(searchString2) || a.Title.Contains(searchString2))
+                .ToList();
+        }
+
+
         // GET: Enrollment
         public ActionResult Index()
         {
@@ -124,7 +151,7 @@ namespace EnrollmentApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+   protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -132,5 +159,6 @@ namespace EnrollmentApplication.Controllers
             }
             base.Dispose(disposing);
         }
+    
     }
 }
