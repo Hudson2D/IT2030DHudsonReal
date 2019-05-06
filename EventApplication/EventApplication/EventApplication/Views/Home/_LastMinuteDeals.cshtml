@@ -1,0 +1,32 @@
+﻿
+@model IEnumerable<EventApplication.Models.Event>
+
+@if (Model.Count() > 0)
+{
+    <div id="searchresults">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Event Title</th>
+                    <th>Start Date</th>
+                    <th>City</th>
+                    <th>State</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr id="@item.EventId">
+                        <td>@Html.ActionLink(item.EventTitle, "Details/" + item.EventId, "Events")</td>
+                        <td>@item.EventStartDate</td>
+                        <td>@item.City</td>
+                        <td>@item.State</td>
+                    </tr>
+                    //   <li>@Html.ActionLink(item.EventTitle, "Details/" + item.EventId, "Events")</li>
+                }
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div>No Events Found</div>
+}

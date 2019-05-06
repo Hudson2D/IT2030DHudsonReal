@@ -1,0 +1,36 @@
+﻿@model EventApplication.Models.Event
+
+@{
+    ViewBag.Title = "RegisterPage";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">Register For Event</div>
+    <div>Sale ends on @Html.DisplayFor(model => model.EventStartDate)</div>
+    <div class="panel-body">
+        @using (Ajax.BeginForm("OrderSummary", "ShoppingCart", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "searchFailed",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "Target"
+        }))
+        {
+            @Html.DisplayFor(model => model.EventTitle)
+
+            <input type="hidden" name="param1" value='@Model.EventId' />
+
+            if (Model.AvailableTickets > 10)
+            {<input type="number" step="1" min="1" max="10" name="param2" id="param2" placeholder="# of Tickets" />}
+            else { <input type="number" step="1" min="1" max="@Model.AvailableTickets" name="param2" id="param2" placeholder="# of Tickets" />}
+
+
+            <input type="submit" value="Register" />
+            <img id="ajax-loader"
+                 src="@Url.Content("~/Content/ajax-loader.gif")"
+                 style="display:none" / >
+        }
+        <div id="searchresults"></div>
+    </div>
+</div>

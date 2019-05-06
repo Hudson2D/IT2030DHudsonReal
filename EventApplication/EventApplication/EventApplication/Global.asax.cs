@@ -6,15 +6,19 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Data.Entity;
-using MVCMusicStoreApplication.Models;
 
-namespace MVCMusicStoreApplication
+using EventApplication.Models;
+
+namespace EventApplication
 {
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
-             Database.SetInitializer(new SampleData());
+            // Database.SetInitializer(new DropCreateDatabaseAlways<EventApplicationDB>());
+           // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EventApplicationDB>());
+            
+            Database.SetInitializer(new SampleData());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -1,0 +1,41 @@
+﻿@model EventApplication.Models.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+@section Scripts {
+
+    <script src="~/Scripts/UserScripts/UserScripts.js"></script>
+}
+
+<h2>Here's your shopping cart</h2>
+<br />
+<div id="update-message"></div>
+<div>
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th>Title</th>
+            <th>Date Ordered</th>
+            <th>Number Of Tickets</th>
+            <th>Order Status</th>
+        </tr>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr id="record-@item.RecordId">
+                <td>@item.EventSelected.EventTitle</td>
+                <td>@item.DateCreated</td>
+                <td id="item-count-@item.RecordId">@item.Count</td>
+                <td id="item-status-@item.RecordId">@item.OrderStatus</td>
+                @if (@item.Count > 0)
+                {<td><a herf="#" id="RemoveLink" data-id="@item.RecordId" class="RemoveLink">Cancel Order</a></td>}
+            </tr>
+        }
+
+
+
+    </table>
+
+
+</div>
+

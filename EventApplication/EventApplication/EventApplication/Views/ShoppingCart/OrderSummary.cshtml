@@ -1,0 +1,23 @@
+﻿@model EventApplication.Models.Event
+
+@{
+    ViewBag.Title = "OrderSummary";
+}
+
+
+@section Scripts {
+
+    <script src="~/Scripts/UserScripts/UserScripts.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<h2>OrderSummary</h2>
+<div>
+    <label id="myEvent">Order Number:</label><div id="random"></div>
+</div>
+
+<label>Event Name:</label>@Html.DisplayFor(model => model.EventTitle)
+
+<div id="myNumber"></div>
+<label>Tickets Ordered:</label>@ViewBag.TicketsOrdered
+
+<div>@Html.ActionLink("Go To My Tickets", "Index", "ShoppingCart") </div>
